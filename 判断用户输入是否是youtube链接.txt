@@ -1,0 +1,21 @@
+ detectURL() {
+      // 用户输入
+      let url = this.inputUrl
+      //匹配 youtube链接
+      if (url.toLowerCase().match('www.youtube.com')) {
+        let reg = new RegExp('(^|&)list=([^&]*)(&|$)')
+        let res = url.match(reg)
+        if (res != null) {
+          let newUrl = 'https://www.youtube.com/watch?list=' + r[2]
+          this.inputUrl = newUrl
+        }
+        return true
+      } else {
+        this.alertMaskShow = true
+        this.countdownHandle()
+        return false
+      }
+    },
+
+//是否带http
+let httpIndex = this.inputUrl.indexOf('http')

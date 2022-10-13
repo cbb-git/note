@@ -1,0 +1,200 @@
+<template>
+  <div>
+    <div class="myanimation">
+      <div class="title" @click="buttonHandle">点击</div>
+      <transition name="fade">
+        <ul class="list" v-show="!button_style">
+          <li>123123</li>
+          <li>3243</li>
+          <li>4322</li>
+          <li>5232</li>
+          <li>5324</li>
+        </ul>
+      </transition>
+    </div>
+    <div class="transition-Example">
+     <div class="Example_text" @click="exampleHandle">
+        点击
+     </div>
+    <transition name="fade2">
+       <div v-show="button_style2">
+         展示
+     </div>
+    </transition>
+    </div>
+    
+    <!-- <HelloWorld></HelloWorld> -->
+  </div>
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      button_style: true,
+      button_style2: true,
+    };
+  },
+  methods: {
+    buttonHandle() {
+      this.button_style = !this.button_style;
+    },
+    exampleHandle(){
+       this.button_style2 = !this.button_style2;
+    }
+  },
+};
+</script>
+
+<style>
+div {
+  color: red;
+}
+.myanimation {
+  position: relative;
+  width: 200px;
+
+  
+}
+.title {
+    position: absolute;
+      z-index: 9;
+      background-color: pink;
+      width: 100%;
+        left: 50%;
+  transform: translateX(-50%);
+}
+.list {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 19px;
+}
+
+.fade-enter-active {
+  animation: list-style 1s;
+}
+.fade-leave-active {
+  animation: list-style2 1s;
+}
+.fade2-enter-active,
+.fade2-leave-active {
+  transition: opacity 1s;
+}
+.fade2-enter,
+.fade2-leave {
+  opacity: 0;
+}
+@keyframes list-style {
+  0% {
+    top: -61px;
+  }
+  100% {
+    top: 19px;
+  }
+}
+@keyframes list-style2 {
+  0% {
+     top: 19px;
+  }
+  100% {
+     top: -61px;
+  }
+}
+body,
+div,
+dl,
+dt,
+dd,
+ul,
+ol,
+li,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+pre,
+code,
+form,
+fieldset,
+legend,
+input,
+button,
+textarea,
+p,
+blockquote,
+th,
+td {
+  margin: 0;
+  padding: 0;
+}
+body {
+  background: #fff;
+  color: #555;
+  font-size: 14px;
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+td,
+th,
+caption {
+  font-size: 14px;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: normal;
+  font-size: 100%;
+}
+address,
+caption,
+cite,
+code,
+dfn,
+em,
+strong,
+th,
+var {
+  font-style: normal;
+  font-weight: normal;
+}
+a {
+  color: #555;
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+img {
+  border: none;
+}
+ol,
+ul,
+li {
+  list-style: none;
+}
+input,
+textarea,
+select,
+button {
+  font: 14px Verdana, Helvetica, Arial, sans-serif;
+}
+table {
+  border-collapse: collapse;
+}
+html {
+  overflow-y: scroll;
+}
+
+.clearfix:after {
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+</style>

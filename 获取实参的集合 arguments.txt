@@ -1,0 +1,23 @@
+<template>
+  <div>
+
+  </div>
+</template>
+
+<script>
+export default {
+methods:{
+    fn(a){
+        let arg = arguments
+      console.log(arg);
+    },
+},
+mounted(){
+    this.fn(1,2,3,4,5)
+}
+}
+</script>
+
+<style>
+
+</style>

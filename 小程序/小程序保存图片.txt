@@ -1,0 +1,96 @@
+// 保存图片
+			onSaveToPhoto(){
+				this.getSetting().then((res)=>{
+					// 判断用户是否授权了本地存储
+					if(!res.authSetting['scope.writePhotosAlbum']){
+						this.authorize().then(()=>{
+							this.savedownloadFile(this.photoUrl);
+						}).catch(()=>{
+							uni.showToast({
+								title:'您拒绝了授权',
+								icon:'none',
+								duration:1500
+							})
+						})
+					}else {
+						this.savedownloadFile(this.photoUrl);
+					}
+				})
+			},
+			// 打开设置，引导用户授权
+			onOpenSetting(){
+				uni.openSetting({
+					success: (res) => {
+						console.log(res.authSetting);
+						if(!res.authSetting['scope.writePhotosAlbum']) {
+							uni.showToast({
+								title:'您未授权',
+								icon:'none',
+								duration:1500
+							})
+						}else {
+							this.onSaveToPhoto();
+						}
+					}
+				})
+			},
+			// 获取用户授权的权限
+			getSetting(){
+				return new Promise((resolve, reject) => {
+					uni.getSetting({
+						success: res => {
+							resolve(res);
+						}
+					})
+				})
+			},
+			// 发起首次授权请求
+			authorize() {
+				return new Promise((resolve, reject) => {
+					uni.authorize({
+						scope:'scope.writePhotosAlbum',
+						success: () => {
+							resolve();
+						},
+						fail:res => {
+							console.log('拒绝授权');
+							reject();
+						}
+					})
+				})
+			},
+			savedownloadFile(img) {
+				this.downLoadFile(img).then((res)=>{
+					return this.savaImageToPhotosAlbum(res.tempFilePath)
+				}).then(()=>{
+				})
+			},
+			// 单文件下载
+			downLoadFile(img) {
+				return new Promise((resolve, reject) => {
+					uni.downloadFile({
+						url: img,
+						success: (res) => {
+							console.log('downloadfile',res);
+							resolve(res);
+						}
+					})
+				})
+			},
+			// 保存图片到系统相册
+			savaImageToPhotosAlbum(saveUrl){
+				return new Promise((resolve, reject) => {
+					uni.saveImageToPhotosAlbum({
+						filePath:saveUrl,
+						success: (res) => {
+							uni.showToast({
+								title:'保存成功',
+								duration: 1000
+							})
+							this.share = false;
+							this.posters = false;
+							resolve();
+						}
+					})
+				})
+			},

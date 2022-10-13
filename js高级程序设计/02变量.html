@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    // 变量包含两种不同类型的值 原始值 和 引用值
+    // 保存原始值是按value访问的 所以操作是变量中的实际值
+    // 引用值是访问内存中的对象 是按引用访问的
+    let name = 'cbb'
+    name.age = '18'
+    // console.log(name.age);  undefined
+    //  new 关键字 会创建一个object的实例
+    let name1 = new String('cbb')
+    name1.age = '18' 
+    // console.log(name1.age);  18
+
+    //   除了上面存储方式不同外 变量复制时也不同
+    // 原始值复制他们是独立的
+    let num = '5'
+    let num2 = num
+    num2 = '6'
+    // console.log(num2,num); 6 5
+ 
+    // 引用值其实他们都指向堆内存中的对象 他们指向的是同一个对象  所以复制的值是同一个指针
+    let obj = new Object()
+    let obj2 = obj
+    obj.name = 'cbb'
+    // console.log(obj,obj2); cbb cbb 
+
+
+    // 确认类型
+        //   typeof 一般用于判断原始值    
+   let num3 = ''
+    //   console.log( typeof num3);
+      let obj3 = new Object()
+      let obj4 = new Array()
+   //    引用值一般用 instanceof    所有的引用值都是object 的实例 所以都会返回 true   而原始值false 
+      console.log(obj3 instanceof Object);
+      console.log(obj4 instanceof Array);
+</script>
+</html>

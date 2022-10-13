@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+</body>
+<style>
+    div {
+        text-align: center;
+        font-size: 20px;
+    }
+</style>
+<script>
+    // console.log("<\/script>");
+  let script = document.createElement('script')
+  script.src = '/01.js'
+  document.head.appendChild(script)
+  // js的实现
+// 1. 核心 ECMAscript  2.DOM  3.BOM
+
+// ECMAscript 定义了规范描述
+// DOM 文档对象模型 操作html节点
+// BOM 浏览器对象模型 操作浏览器窗口 location navigator
+
+// script 标签
+
+// async 属性立即加载脚本 但是不阻止页面其他动作
+
+
+// defer 文档完全解析之后在执行 
+
+// 也可以动态引入js
+// let script = document.createElement('script')
+// script.src = '/01.js'
+// document.head.appendChild(script)
+
+// var 全局声明 可以变成 window的对象属性 而let 不会
+// const 声明限制指向变量的引用 如果const 变量引用的是一个对象 修改对内部的属性 不违反const 规则
+
+// 赋值操作符
+// 乘后赋值  *=   出后赋值 /=  取模后赋值 %=
+
+// for in 枚举 键
+// let obj = {
+//     'aa':'123456',
+//     'bb':'1234567',
+// }
+// for (const key in obj) {
+//    console.log(key);
+// }
+
+// // for of 枚举 数组里面的值
+// let objs = ['11','22','33']
+// for (const key of objs) {
+//        console.log(key);
+// }
+</script>
+</html>

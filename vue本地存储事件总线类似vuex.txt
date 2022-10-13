@@ -1,0 +1,37 @@
+// 事件总线
+Vue.prototype.resetSetItem = function(key, newVal) {
+	if (key === 'paddleStatus') {
+		// 创建一个StorageEvent事件
+		var newStorageEvent = document.createEvent('StorageEvent')
+		const storage = {
+			setItem: function(k, val) {
+				sessionStorage.setItem(k, val)
+				// 初始化创建的事件
+				newStorageEvent.initStorageEvent(
+					'setItem',
+					false,
+					false,
+					k,
+					null,
+					val,
+					null,
+					null
+				)
+				// 派发对象
+				window.dispatchEvent(newStorageEvent)
+			}
+		}
+		return storage.setItem(key, newVal)
+	}
+}
+
+存放数据
+  this.resetSetItem('paddleStatus', JSON.stringify(new_link))
+
+获取数据
+ window.addEventListener('setItem', () => {
+      let data = JSON.parse(sessionStorage.getItem('paddleStatus'))
+            this.link.leftLink =  data.left
+            this.link.rightLink =  data.right
+            this.device = data.device
+    })

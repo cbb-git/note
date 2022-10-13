@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex">
+  <title>Document</title>
+ 
+  <link rel="stylesheet" href="./css/index.css">
+  <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/swiper@6/swiper-bundle.min.css">
+  <script src="https://unpkg.com/swiper@6/swiper-bundle.min.js"> </script>
+</head>
+
+<body>
+        <div class="swipr_style" style="overflow:hidden;">
+          <div  style="width: 100%; height: 300px" class="swiper pc_style"
+            id="pic-content" ref="usBoxSwiperRight">
+            <div class="swiper-wrapper">
+            <div class="swiper-slide">
+              <div class="explain_content_box explain_content_boxs">
+                <img class="explain_content_box_img"  alt="" />
+                <span class="explain_content_box_text1"></span>
+                <span class="explain_content_box_text2"></span>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="explain_content_box explain_content_boxs">
+                <img class="explain_content_box_img"  alt="" />
+                <span class="explain_content_box_text1"></span>
+                <span class="explain_content_box_text2"></span>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="explain_content_box explain_content_boxs">
+                <img class="explain_content_box_img"  alt="" />
+                <span class="explain_content_box_text1"></span>
+                <span class="explain_content_box_text2"></span>
+              </div>
+            </div>
+          </div>
+            <div class="swiper-pagination swiperPaginations pc_style" slot="pagination" style="width:100%;margin-right: 16px">
+            </div>
+          </div>
+        </div>
+</body>
+<script>
+ let explain =  [
+          {
+            img: '/img/explain1.png',
+            title: '100% Safe & Professional',
+            text: 'We are commited to providing competitive and easy-to-use data recovery and multimedia software products to all valued users.',
+          },
+          {
+            img: '/img/explain2.png',
+            title: 'Reliable Services',
+            text: 'Our experienced technial team and responsive customer support members are always here for you to resolve any problem.',
+          },
+          {
+            img: '/img/explain3.png',
+            title: '30-Day Money Back',
+            text: 'We provides a 30-day money back guarantee as long as the request is deemed as resonable.',
+          },
+        ];
+ 
+  explain.forEach((item,index)=>{
+       $('.explain_content div:first').prepend(`
+            <div class="explain_content_box" v-for="value in explain" :key="value.title">
+              <img class="explain_content_box_img" :src="value.img" alt="" />
+              <span class="explain_content_box_text1">{{ value.title }}</span>
+              <span class="explain_content_box_text2">{{ value.text }}</span>
+            </div>`)
+
+       $($('.explain_content_box')[index]).children('.explain_content_box_img').attr('src',item.img)     
+  })
+  explain.forEach((item,index)=>{
+       $($('.explain_content_box')[index]).children('.explain_content_box_img').attr('src',item.img)    
+       $($('.explain_content_box')[index]).children('.explain_content_box_text1').html(item.title)    
+       $($('.explain_content_box')[index]).children('.explain_content_box_text2').html(item.text)  
+       $($('.explain_content_boxs')[index]).children('.explain_content_box_img').attr('src',item.img)    
+       $($('.explain_content_boxs')[index]).children('.explain_content_box_text1').html(item.title)    
+       $($('.explain_content_boxs')[index]).children('.explain_content_box_text2').html(item.text) 
+
+  })
+
+ 
+
+  
+</script>
+<!-- Swiper -->
+<script type="module">
+  import Swiper from 'https://unpkg.com/swiper@8/swiper-bundle.esm.browser.min.js'
+  const swiper = new Swiper('.swiper',{
+    direction: 'horizontal',
+    slidePerview: 1,
+    // loop:true,
+    autoplay: {
+      delay: 3000,
+      stopOnLastSlide: false,
+      disableOnInteraction: true,
+    },
+    navigation: {
+      nextEl: '.swiperOneNext',
+      prevEl: '.swiperOnePrev',
+    },
+    pagination: {
+      el: '.swiperPaginations',
+      clickable: true,
+    },
+  })
+</script>
+<style>
+  .explain_content_box {
+    width: 320.86px;
+    height: 307.5px;
+    background: red;
+backdrop-filter: blur(25px);
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 37px;
+  }
+  .explain_content_box:hover {
+    background: #FFFFFF;
+    box-shadow: 0px 9px 0px #8c419c;
+  }
+  .explain_content_box:hover .explain_content_box_text1{
+    color: #000000;
+  }
+  .explain_content_box:hover .explain_content_box_text2{
+    color: rgba(0, 0, 0, 0.54);
+  }
+  
+  .explain_content_box .explain_content_box_text1 {
+    font-weight: bold;
+    font-size: 20px;
+    color: #ffffff;
+    margin-top: 20px;
+  }
+  .explain_content_box .explain_content_box_text2 {
+    font-size: 14px;
+    line-height: 29px;
+    color: rgba(255, 255, 255, 0.54);
+    text-align: center;
+    width: 90%;
+    margin-top: 12px;
+  }
+ 
+  .mobile_style {
+    display: block ;
+    }
+  .pc_style {
+    display: none ;
+  }
+
+  .swiper-pagination .swiper-pagination-bullet {
+      background-color: red 
+  }
+
+  @media (max-width: 770px) {
+    .mobile_style {
+      display: none ;
+    }
+    .pc_style {
+      display: block ;
+    }
+ 
+    .explain_content_box {
+      width: 92%;
+      height: 220px;
+      margin-top: 42px;
+      padding-top: 26px;
+      margin: 42px auto;
+    }
+
+    .explain_content_box .explain_content_box_img {
+      height: 56px;
+    }
+    .explain_content_box .explain_content_box_text1 {
+      font-size: 16px;
+    }
+    .explain_content_box .explain_content_box_text2 {
+      font-size: 12px;
+      margin-top: 0px;
+    }
+    .de_body .explain_content_box .explain_content_box_text2 {
+      line-height: 23px;
+    }
+    
+    .swiper-pagination-clickable .swiper-pagination-bullet {
+      margin-right: 15px;
+    }
+    .scorll-box .swiper-pagination .swiper-pagination-bullet {
+      margin: 0 4px;
+    }
+  
+    
+  }
+</style>
+</html>

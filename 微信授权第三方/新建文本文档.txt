@@ -1,0 +1,47 @@
+ data() {
+    return {
+      navs: [], // 导航栏
+      url: ``, // 微信授权
+      appid: "", // 微信appid
+      timeStamp: "",
+      redirect_uri: "http://test.guoshi.red/addons/ewei_shopv2/template/webapp/gzh2/index.html", // 回调地址
+      code: "", // url地址中的参数code
+    };
+  },
+  methods: {
+       // 截取url中的code方法
+    getUrlCode() {
+      var url = location.search;
+      this.winUrl = url;
+      var theRequest = new Object();
+      if (url.indexOf("?") != -1) {
+        var str = url.substr(1);
+        var strs = str.split("&");
+        for (var i = 0; i < strs.length; i++) {
+          theRequest[strs[i].split("=")[0]] = strs[i].split("=")[1];
+        }
+      }
+      return theRequest;
+    },
+    // 获取code值
+    async getCode() {
+      // 获取测试appid 由后台提供
+      let res = await appId();
+      let appid = res.data.data.list.appid;
+      let timeStamp = res.data.data.list.servertime;
+      // 设置回调地址
+      this.url = `https://open.weixin.qq.com/connect/oauth2/authorize?
+    appid=${appid}&redirect_uri=${this.redirect_uri}&response_type=code&scope=snsapi_base&state=12356#wechat_redirect`;
+      // 截取code
+      this.code = this.getUrlCode().code;
+      // 如果code值没有，进行回调
+      if (this.code == "" || this.code == null) {
+        window.location.href = `${this.url}`;
+      }
+      console.log(this.code);
+    },
+  },
+
+  mounted() {
+    this.getCode();
+  },
