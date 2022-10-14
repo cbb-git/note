@@ -1,0 +1,15 @@
+// 外容器
+.header {
+  background-color: pink;
+  height: $height;
+  position: sticky;
+  top: calc($height2 - $height);
+  display: flex;
+  align-items: center;
+  // 内容器
+  .header2 {
+    line-height: $height2;
+    position: sticky;
+    top: 0;
+  }
+}
