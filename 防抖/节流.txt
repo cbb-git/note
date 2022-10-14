@@ -1,4 +1,0 @@
- clearTimeout(this.tiemID);
-      this.tiemID = setTimeout(() => {
-        console.log('执行节流函数');
-      }, 1000); 

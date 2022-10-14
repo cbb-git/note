@@ -1,0 +1,20 @@
+    //    防抖
+    let status2 = null
+    $(window).mouseover(function () {
+        if (status2) {
+            clearTimeout(status2)
+        }
+        status2 = setTimeout(() => {
+            console.log(123456);
+        }, 500)
+    })
+
+    // 节流
+    // let status = null
+    // $(window).mouseover(function () {
+    //     if (status) { return }
+    //     status = setTimeout(() => {
+    //         // console.log(123456);
+    //         status = null
+    //     }, 500);
+    // })
